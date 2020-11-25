@@ -1,17 +1,35 @@
 import urllib.request, urllib.error, urllib.parse
 import hashlib
 
+# FIXME: adapt inputlist (testlist) such that reading passwords downloaded from chrome is easy
+#        however it should still be possible to lookup typing a few words the way it is now
+# FIXME: make a menu
+# FIXME: graphical presentation of the result
+# FIXME: lookup simelar words, upper-/lowercase and such
+#       make sure that a password is not presented twice in the result doing this,
+#       however a count might be appropriate
+
+
+
 testlist = []
 sha1list = []
 hitlist = []
 
-f = open('testlist.csv',"r")
+f = open('Chrome-passord.csv',"r")
 lines = f.readlines()
 for line in lines:
     line = line.rstrip()
-    line = line.split(",")
-    for l in line:
-        testlist.append(l)
+    testlist.append(line)
+
+print(testlist)
+
+# f = open('testlist.csv',"r")
+# lines = f.readlines()
+# for line in lines:
+#     line = line.rstrip()
+#     line = line.split(",")
+#     for l in line:
+#         testlist.append(l)
 
 
 for test in testlist:
@@ -50,4 +68,7 @@ for hash in sha1list:
         i+=1
     count+=1
 
-print(hitlist)
+if len(hitlist) == 0:
+    print("all is good")
+else:
+    print(hitlist)
